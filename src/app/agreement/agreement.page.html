@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Agreement</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Agreement</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <div id="content">
+      <h4>Survey Respondent Agreement</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+        odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
+        quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
+        mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
+        Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos. Curabitur
+        sodales ligula in libero. Sed dignissim lacinia nunc.
+      </p>
+      <p>
+        By clicking the "I Agree" button, you are agreeing to participate in the
+        SIRC Survey. You will be asked to answer a series of questions about
+        your experiences with the SIRC program. Your responses will be kept
+        confidential and will not be shared with anyone outside of the research
+        team. You may choose to stop participating at any time by closing the
+        browser window. If you have any questions about the survey, please
+        contact the research team at
+      </p>
+      <ion-checkbox slot="end">
+        I Agree to the terms and conditions
+      </ion-checkbox>
+      <div style="text-align: center; margin-top: 30px">
+        <div class="canvas-container">
+          <canvas
+            #signPadCanvas
+            (touchstart)="startSignPadDrawing($event)"
+            (touchmove)="movedFinger($event)"
+          ></canvas>
+        </div>
+        <ion-button color="secondary" (click)="saveSignPad()">
+          Save
+        </ion-button>
+        <ion-button (click)="clearSignPad()">Clear</ion-button>
+        <ion-button (click)="undoSign()">Undo</ion-button>
+        <div>
+          <span>Write the signature and click on Save</span>
+          <!-- <div>
+            <img src="{{ signImage }}" />
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,23 @@
+/* view-form.page.scss */
+.question-item {
+  margin-bottom: 20px;
+}
+
+.question-label {
+  font-weight: bold;
+}
+
+.options-group {
+  margin-top: 10px;
+}
+
+.option {
+  margin-left: 10px;
+}
+
+.short-answer-input,
+.paragraph-textarea,
+.number-input {
+  width: 100%;
+  margin-top: 10px;
+}

@@ -1,0 +1,14 @@
+<!-- survey-list.page.html -->
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Survey List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list lines="full">
+    <ion-item *ngFor="let form of surveyForms" (click)="viewForm(form)">
+      {{ form.title }}
+    </ion-item>
+  </ion-list>
+</ion-content>

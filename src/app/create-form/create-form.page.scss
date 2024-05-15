@@ -1,0 +1,42 @@
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#content {
+  width: 90%;
+  max-width: 500px; /* Adjust width as needed */
+}
+
+ion-item {
+  margin-bottom: 16px;
+}
+
+ion-label {
+  font-weight: bold;
+}
+
+ion-input {
+  border-radius: 8px;
+}
+
+ion-button {
+  margin-top: 16px;
+  border-radius: 8px;
+}
+
+.options-container {
+  display: flex;
+  align-items: center;
+}
+
+.option-input {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.option-remove-button {
+  flex-shrink: 0;
+}

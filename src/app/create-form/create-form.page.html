@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>create-form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">create-form</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <div id="content">
+      <ion-input placeholder="Form Title" [(ngModel)]="formTitle"></ion-input>
+
+      <ion-list *ngFor="let question of questions; let i = index">
+        <ion-item>
+          <ion-label position="stacked">Question {{ i + 1 }}</ion-label>
+          <ion-input type="text" [(ngModel)]="question.question"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Type of Question</ion-label>
+          <ion-select [(ngModel)]="question.question_type">
+            <ion-select-option value="number">Number</ion-select-option>
+            <ion-select-option value="text">Short Text</ion-select-option>
+            <ion-select-option value="paragraph">Paragraph</ion-select-option>
+            <ion-select-option value="multipleChoice"
+              >Multiple Choice</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+
+        <ion-item *ngIf="question.question_type === 'multipleChoice'">
+          <ion-label position="stacked">Options</ion-label>
+          <ion-button (click)="addOption(question)">Add Option</ion-button>
+          <ion-item
+            *ngFor="let option of question.options; let j = index; trackBy: trackByFn"
+          >
+            <ion-input
+              type="text"
+              [(ngModel)]="question.options[j]"
+            ></ion-input>
+            <ion-button (click)="removeOption(question, j)">Remove</ion-button>
+          </ion-item>
+        </ion-item>
+      </ion-list>
+
+      <ion-button expand="full" (click)="addQuestion()"
+        >Add Question</ion-button
+      >
+      <ion-button expand="full" (click)="submit()">Submit</ion-button>
+    </div>
+  </div>
+</ion-content>

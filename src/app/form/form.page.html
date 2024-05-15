@@ -1,0 +1,40 @@
+<!-- view-form.page.html -->
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>View Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-list lines="full">
+    <ng-container *ngFor="let question of surveyForm.questions">
+      <ion-item class="question-item" style="display: flex">
+        <ion-label class="question-label">{{ question.question }}</ion-label>
+        <br />
+        <ng-container *ngIf="question.question_type === 'multipleChoice'">
+          <ion-radio-group class="options-group">
+            <ion-radio
+              *ngFor="let option of question.options"
+              [value]="option"
+              class="option"
+            >
+              {{ option }}
+            </ion-radio>
+          </ion-radio-group>
+        </ng-container>
+
+        <ng-container *ngIf="question.question_type === 'shortAnswer'">
+          <ion-input type="text" class="short-answer-input"></ion-input>
+        </ng-container>
+
+        <ng-container *ngIf="question.question_type === 'paragraph'">
+          <ion-textarea class="paragraph-textarea"></ion-textarea>
+        </ng-container>
+
+        <ng-container *ngIf="question.question_type === 'number'">
+          <ion-input type="number" class="number-input"></ion-input>
+        </ng-container>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>
