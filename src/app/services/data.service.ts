@@ -7,51 +7,79 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DataService {
-  private jsonFile = './assets/data.json'; // Corrected path if your JSON file is in the assets folder
-  private surveyForms: any[] = [
-    {
-      id: '5kkydqkoctk1655822142',
-      title: 'Survey 1',
-      questions: [
-        {
-          question: 'question1',
-          question_type: 'multipleChoice',
-          options: ['option1', 'option2', 'option3', 'option4'],
-        },
-        {
-          question: 'question2',
-          question_type: 'multipleChoice',
-          options: ['option1', 'option2', 'option3', 'option4'],
-        },
-        {
-          question: 'question3',
-          question_type: 'multipleChoice',
-          options: ['option1', 'option2', 'option3', 'option4'],
-        },
-        {
-          question: 'question4',
-          question_type: 'paragraph',
-          options: [],
-        },
-        {
-          question: 'question5',
-          question_type: 'shortAnswer',
-          options: [],
-        },
-      ],
-    },
-  ];
+  // private jsonFile = 'assets/data.json'; // Corrected path if your JSON file is in the assets folder
+  private jsonFile = 'https://api.jsonbin.io/v3/b/6644f996e41b4d34e4f439d1'; // Corrected path if your JSON file is in the assets folder
+  private answersFile = 'https://api.jsonbin.io/v3/b/6644fdefad19ca34f869f0d4'; // Corrected path if your JSON file is in the assets folder
+  private surveyForms: any[] = [];
+  private surveyAnswers: any[] = [];
 
   private selectedFormID = '';
-  constructor(private http: HttpClient) {}
 
-  // loadSurveyForms(): Observable<any[]> {
-  //   return this.http.get<any[]>(this.jsonFile).pipe(
-  //     tap((forms) => {
-  //       this.surveyForms = forms;
-  //     })
-  //   );
-  // }
+  constructor(private http: HttpClient) {
+    this.loadSurveyForms().subscribe();
+    this.loadSuveryAnswers().subscribe();
+  }
+
+  loadSuveryAnswers(): Observable<any[]> {
+    return this.http
+      .get<any[]>(this.answersFile, {
+        headers: {
+          'X-Master-Key':
+            '$2a$10$Hn4mhNb7bfQ8TJ8ohooq3ORC4HWmnh0gH2/TAHuGAgBAQoUOAY2TK',
+          'X-Access-Key':
+            '$2a$10$hUbdAGVOh32fIJDUNkncq.jBFGahNcrMbl686n4BpeD8oNZCziP0i',
+        },
+      })
+      .pipe(
+        tap((response: any) => {
+          this.surveyAnswers = response.record;
+        })
+      );
+  }
+
+  getSurveyAnswers(): any[] {
+    return this.surveyAnswers;
+  }
+
+  submitAnswers(submission: any) {
+    console.log(submission, 'submission', this.surveyAnswers);
+    this.surveyAnswers.push(submission);
+    this.http
+      .put(this.answersFile, this.surveyAnswers, {
+        headers: {
+          'X-Master-Key':
+            '$2a$10$Hn4mhNb7bfQ8TJ8ohooq3ORC4HWmnh0gH2/TAHuGAgBAQoUOAY2TK',
+          'X-Access-Key':
+            '$2a$10$hUbdAGVOh32fIJDUNkncq.jBFGahNcrMbl686n4BpeD8oNZCziP0i',
+        },
+      })
+      .subscribe(
+        //load answers
+        () => {
+          this.loadSuveryAnswers().subscribe();
+        }
+      );
+  }
+
+  loadSurveyForms(): Observable<any[]> {
+    //with headers
+    return this.http
+      .get<any[]>(this.jsonFile, {
+        headers: {
+          'X-Master-Key':
+            '$2a$10$Hn4mhNb7bfQ8TJ8ohooq3ORC4HWmnh0gH2/TAHuGAgBAQoUOAY2TK',
+          'X-Access-Key':
+            '$2a$10$hUbdAGVOh32fIJDUNkncq.jBFGahNcrMbl686n4BpeD8oNZCziP0i',
+        },
+      })
+      .pipe(
+        tap((response: any) => {
+          // Assign the array from the 'record' property to surveyForms
+          this.surveyForms = response.record;
+          console.log(this.surveyForms, 'forms', response);
+        })
+      );
+  }
 
   getSurveyForms(): any[] {
     return this.surveyForms;
@@ -65,15 +93,42 @@ export class DataService {
     return this.selectedFormID;
   }
 
-  addSurveyForm(form: any): Observable<any> {
+  addSurveyForm(form: any) {
+    console.log(form, 'form', this.surveyForms);
     this.surveyForms.push(form);
-    return this.uploadSurveyForms();
+    this.uploadSurveyForms();
   }
 
   getFormById(id: string): any {
+    console.log(
+      this.surveyForms,
+      'forms',
+      this.surveyForms.find((form) => form.id === id)
+    );
     return this.surveyForms.find((form) => form.id === id);
   }
-  private uploadSurveyForms(): Observable<any> {
-    return this.http.put(this.jsonFile, this.surveyForms);
+
+  private uploadSurveyForms() {
+    this.http
+      .put(this.jsonFile, this.surveyForms, {
+        headers: {
+          'X-Master-Key':
+            '$2a$10$Hn4mhNb7bfQ8TJ8ohooq3ORC4HWmnh0gH2/TAHuGAgBAQoUOAY2TK',
+          'X-Access-Key':
+            '$2a$10$hUbdAGVOh32fIJDUNkncq.jBFGahNcrMbl686n4BpeD8oNZCziP0i',
+        },
+      })
+      .pipe(
+        tap((response: any) => {
+          this.loadSurveyForms().subscribe();
+        })
+      )
+      .subscribe();
+  }
+
+  deleteSurveyForm(id: string) {
+    this.surveyForms = this.surveyForms.filter((form) => form.id !== id);
+    console.log(this.surveyForms, 'forms');
+    this.uploadSurveyForms();
   }
 }

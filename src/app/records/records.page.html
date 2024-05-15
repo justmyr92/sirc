@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>records</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">records</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div>
+    <ng-container *ngFor="let survey of surveyForms">
+      <div>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{survey.title}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button (click)="openSurvey(survey.id)">Open</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ng-container>
+  </div>
+</ion-content>

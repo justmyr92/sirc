@@ -1,6 +1,17 @@
-/* view-form.page.scss */
-.question-item {
+.question-card {
   margin-bottom: 20px;
+}
+
+.question-card ion-card-header {
+  background-color: #f0f0f0;
+}
+
+.question-card ion-card-title {
+  font-weight: bold;
+}
+
+.question-card ion-card-content {
+  padding: 15px;
 }
 
 .question-label {
@@ -12,12 +23,11 @@
 }
 
 .option {
-  margin-left: 10px;
+  margin-bottom: 5px;
 }
 
 .short-answer-input,
 .paragraph-textarea,
 .number-input {
-  width: 100%;
   margin-top: 10px;
 }

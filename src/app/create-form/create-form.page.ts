@@ -3,6 +3,7 @@ import { DataService } from '../services/data.service';
 import { saveAs } from 'file-saver';
 
 interface Question {
+  qid: string;
   question: string;
   question_type: string;
   options: string[];
@@ -25,8 +26,21 @@ export class CreateFormPage implements OnInit {
     return index;
   }
 
+  idGenerator(): string {
+    return (
+      Math.random().toString(36).substring(2, 15) +
+      Math.floor(Math.random() * 899999999 + 100000000)
+    );
+  }
+
   addQuestion() {
-    this.questions.push({ question: '', question_type: '', options: [] });
+    this.questions.push({
+      //add id to question
+      qid: this.idGenerator().toString(),
+      question: '',
+      question_type: 'text',
+      options: [],
+    });
   }
 
   addOption(question: Question) {
@@ -36,14 +50,6 @@ export class CreateFormPage implements OnInit {
   removeOption(question: Question, index: number) {
     question.options.splice(index, 1);
   }
-
-  idGenerator() {
-    return (
-      Math.random().toString(36).substring(2, 15) +
-      Math.floor(Math.random() * 899999999 + 100000000)
-    );
-  }
-
   submit() {
     const form = {
       id: this.idGenerator(),

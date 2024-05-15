@@ -7,9 +7,16 @@
 
 <ion-content [fullscreen]="true">
   <ion-list lines="full">
-    <ion-item *ngFor="let form of surveyForms" (click)="viewForm(form)">
-      {{ form.title }}
-    </ion-item>
-    <ion-item [routerLink]="['/survey']">Survey 2</ion-item>
+    <div
+      style="display: flex; justify-content: space-between; padding: 0 10px"
+      *ngFor="let form of surveyForms"
+    >
+      <ion-item (click)="viewForm(form)"> {{ form.title }} </ion-item>
+
+      <!-- <ion-button slot="end" fill="clear" (click)="deleteForm(form)">
+        <ion-icon name="trash" slot="icon-only"></ion-icon>
+      </ion-button> -->
+    </div>
+    <!-- <ion-item [routerLink]="['/survey']">Survey 2</ion-item> -->
   </ion-list>
 </ion-content>

@@ -14,15 +14,26 @@ export class SurveyListPage implements OnInit {
   constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit() {
+    // Load survey forms when the component initializes
     this.loadSurveyForms();
   }
 
   loadSurveyForms() {
-    this.surveyForms = this.dataService.getSurveyForms();
+    // Subscribe to the Observable returned by getSurveyForms
+    this.dataService.loadSurveyForms().subscribe((forms: any) => {
+      // Assign the fetched survey forms to the component property
+      this.surveyForms = forms.record;
+      console.log(this.surveyForms, 'surveyForms');
+    });
   }
 
   viewForm(form: any) {
     this.dataService.setSelectedFormID(form.id);
     this.router.navigate(['/agreement']);
+  }
+
+  deleteForm(form: any) {
+    console.log(form.id);
+    this.dataService.deleteSurveyForm(form.id);
   }
 }
