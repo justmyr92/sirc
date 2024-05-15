@@ -32,7 +32,7 @@
         browser window. If you have any questions about the survey, please
         contact the research team at
       </p>
-      <ion-checkbox slot="end">
+      <ion-checkbox slot="end" [(ngModel)]="checkBoxValue">
         I Agree to the terms and conditions
       </ion-checkbox>
       <div style="text-align: center; margin-top: 30px">
@@ -44,12 +44,23 @@
           ></canvas>
         </div>
         <ion-button color="secondary" (click)="saveSignPad()">
-          Save
+          Submit
         </ion-button>
         <ion-button (click)="clearSignPad()">Clear</ion-button>
         <ion-button (click)="undoSign()">Undo</ion-button>
         <div>
-          <span>Write the signature and click on Save</span>
+          <ng-container *ngIf="signImage">
+            <p id="message">
+              Please sign in the box above to indicate your agreement to the
+              terms and conditions.
+            </p>
+            <ion-toast
+              trigger="open-toast"
+              message="This toast will disappear after 5 seconds"
+              [duration]="5000"
+            ></ion-toast>
+          </ng-container>
+
           <!-- <div>
             <img src="{{ signImage }}" />
           </div> -->

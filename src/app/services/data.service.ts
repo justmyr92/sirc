@@ -14,12 +14,20 @@ export class DataService {
   private surveyAnswers: any[] = [];
   private selectedFormID = '';
   private selectedAnswer: any = {};
-
+  private signature: any = {};
   getSelectedAnswer(): string {
     return this.selectedAnswer;
   }
   setSelectedAnswerID(answer: any) {
     this.selectedAnswer = answer;
+  }
+
+  getSignature(): any {
+    return this.signature;
+  }
+
+  setSignature(signature: any) {
+    this.signature = signature;
   }
 
   constructor(private http: HttpClient) {

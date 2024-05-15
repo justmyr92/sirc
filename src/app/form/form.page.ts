@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -10,7 +11,7 @@ export class FormPage implements OnInit {
   surveyForm: any;
   answers: any[] = []; // Array to store answers
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit() {
     const selectedFormId = this.dataService.getSelectedFormID();
@@ -44,6 +45,7 @@ export class FormPage implements OnInit {
     // Now, you have your answers in the desired format
     const submission = {
       id: Math.random().toString(36).substr(2, 9), // Generate a random ID
+      signature: this.dataService.getSignature(),
       surveyId: surveyId,
       answers: this.answers,
     };
@@ -52,5 +54,7 @@ export class FormPage implements OnInit {
     console.log(submission);
     // Call a method in your data service to submit the answers
     this.dataService.submitAnswers(submission);
+
+    this.router.navigate(['/survey-list']);
   }
 }
