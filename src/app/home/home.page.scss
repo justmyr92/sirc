@@ -3,24 +3,33 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  .menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    .start-survey-btn {
-      --background: none;
-      --color: red;
-      --border-style: solid;
-      --border-color: red;
-      --border-width: 2px;
-      --box-shadow: none;
-      width: 200px;
-    }
-    .view-survey-btn {
-      --background: red;
-      --box-shadow: none;
-      width: 200px;
+  background-image: url("../../assets/bg.jpg");
+  #content {
+    background-color: rgba(255, 0, 0, 0.253);
+
+    height: 100%;
+    width: 100%;
+    .menu {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .start-survey-btn {
+        --background: none;
+        --color: red;
+        --border-style: solid;
+        --border-color: red;
+        --border-width: 2px;
+        --box-shadow: none;
+        width: 200px;
+      }
+      .view-survey-btn {
+        --background: red;
+        --box-shadow: none;
+        width: 200px;
+      }
     }
   }
 }
