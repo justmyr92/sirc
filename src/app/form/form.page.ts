@@ -43,6 +43,7 @@ export class FormPage implements OnInit {
 
     // Now, you have your answers in the desired format
     const submission = {
+      id: Math.random().toString(36).substr(2, 9), // Generate a random ID
       surveyId: surveyId,
       answers: this.answers,
     };
