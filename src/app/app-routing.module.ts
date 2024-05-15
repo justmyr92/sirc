@@ -41,6 +41,10 @@ const routes: Routes = [
     path: 'view-survey',
     loadChildren: () => import('./view-survey/view-survey.module').then( m => m.ViewSurveyPageModule)
   },
+  {
+    path: 'view-answer',
+    loadChildren: () => import('./view-answer/view-answer.module').then( m => m.ViewAnswerPageModule)
+  },
 ];
 
 @NgModule({

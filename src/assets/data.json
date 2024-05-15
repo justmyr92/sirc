@@ -1,37 +1,80 @@
 [
   {
-    "id": "5kkydqkoctk1655822142",
-    "title": "Survey 1",
-    "questions": [
+    "id": "HAlkdfjlkj",
+    "surveyId": "5kkydqkoctk1655822142",
+    "answers": [
       {
-        "qid": "72891K281",
-        "question": "question1",
-        "question_type": "multipleChoice",
-        "options": ["option1", "option2", "option3", "option4"]
+        "questionId": "72891K281",
+        "answer": "option1"
       },
       {
-        "qid": "72891K282",
-        "question": "question2",
-        "question_type": "multipleChoice",
-        "options": ["option1", "option2", "option3", "option4"]
+        "questionId": "72891K282",
+        "answer": "option2"
       },
       {
-        "qid": "72891K283",
-        "question": "question3",
-        "question_type": "multipleChoice",
-        "options": ["option1", "option2", "option3", "option4"]
+        "questionId": "72891K283",
+        "answer": "option3"
       },
       {
-        "qid": "72891K284",
-        "question": "question4",
-        "question_type": "paragraph",
-        "options": []
+        "questionId": "72891K284",
+        "answer": "Paragraph answer for question 4"
       },
       {
-        "qid": "72891K285",
-        "question": "question5",
-        "question_type": "shortAnswer",
-        "options": []
+        "questionId": "72891K285",
+        "answer": "Short answer for question 5"
+      }
+    ]
+  },
+  {
+    "id": "HAlkdfj827",
+    "surveyId": "5kkydqkoctk1655822142",
+    "answers": [
+      {
+        "questionId": "72891K281",
+        "answer": "option1"
+      },
+      {
+        "questionId": "72891K282",
+        "answer": "option1"
+      },
+      {
+        "questionId": "72891K283",
+        "answer": "option1"
+      },
+      {
+        "questionId": "72891K284",
+        "answer": "fsdf"
+      },
+      {
+        "questionId": "72891K285",
+        "answer": "sdfsd"
+      }
+    ]
+  },
+
+  {
+    "id": "lkasha872",
+    "surveyId": "5kkydqkoctk1655822142",
+    "answers": [
+      {
+        "questionId": "72891K281",
+        "answer": "option1"
+      },
+      {
+        "questionId": "72891K282",
+        "answer": "option2"
+      },
+      {
+        "questionId": "72891K283",
+        "answer": "option2"
+      },
+      {
+        "questionId": "72891K284",
+        "answer": "213123"
+      },
+      {
+        "questionId": "72891K285",
+        "answer": "23123123"
       }
     ]
   }

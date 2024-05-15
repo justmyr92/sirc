@@ -1,13 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>view-survey</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title size="large">view-survey</ion-title>
+      <ion-title>view-survey</ion-title>
     </ion-toolbar>
+    <ion-buttons (click)="generateExcel()">
+      <ion-button>
+        <ion-icon slot="icon-only" name="download"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-header>
+  <ion-list>
+    <ng-container *ngFor="let answer of answers; let i = index">
+      <ion-item (click)="openAnswer(answer)">
+        <ion-label> {{i + 1}}. </ion-label>
+        <ion-text>Answer {{ i + 1 }}</ion-text>
+      </ion-item>
+    </ng-container>
+  </ion-list>
 </ion-content>

@@ -9,11 +9,18 @@ import { tap } from 'rxjs/operators';
 export class DataService {
   // private jsonFile = 'assets/data.json'; // Corrected path if your JSON file is in the assets folder
   private jsonFile = 'https://api.jsonbin.io/v3/b/6644f996e41b4d34e4f439d1'; // Corrected path if your JSON file is in the assets folder
-  private answersFile = 'https://api.jsonbin.io/v3/b/6644fdefad19ca34f869f0d4'; // Corrected path if your JSON file is in the assets folder
+  private answersFile = 'https://api.jsonbin.io/v3/b/66453299e41b4d34e4f451e0'; // Corrected path if your JSON file is in the assets folder
   private surveyForms: any[] = [];
   private surveyAnswers: any[] = [];
-
   private selectedFormID = '';
+  private selectedAnswer: any = {};
+
+  getSelectedAnswer(): string {
+    return this.selectedAnswer;
+  }
+  setSelectedAnswerID(answer: any) {
+    this.selectedAnswer = answer;
+  }
 
   constructor(private http: HttpClient) {
     this.loadSurveyForms().subscribe();
