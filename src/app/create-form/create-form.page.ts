@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { saveAs } from 'file-saver';
+import { Router } from '@angular/router';
 
 interface Question {
   qid: string;
@@ -18,7 +19,7 @@ export class CreateFormPage implements OnInit {
   questions: Question[] = [];
   formTitle: string = '';
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -58,5 +59,6 @@ export class CreateFormPage implements OnInit {
     };
 
     this.dataService.addSurveyForm(form);
+    this.router.navigate(['/survey-list']);
   }
 }

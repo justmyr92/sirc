@@ -2,21 +2,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Survey List</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="primary" [routerLink]="['/home']">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" color="primary" [routerLink]="['/create-form']">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list lines="full">
-    <div
-      style="display: flex; justify-content: space-between; padding: 0 10px"
-      *ngFor="let form of surveyForms"
-    >
-      <ion-item (click)="viewForm(form)"> {{ form.title }} </ion-item>
-
-      <!-- <ion-button slot="end" fill="clear" (click)="deleteForm(form)">
-        <ion-icon name="trash" slot="icon-only"></ion-icon>
-      </ion-button> -->
-    </div>
-    <!-- <ion-item [routerLink]="['/survey']">Survey 2</ion-item> -->
+    <ion-item *ngFor="let form of surveyForms" detail>
+      <ion-label (click)="viewForm(form)">
+        <h2>{{ form.title }}</h2>
+      </ion-label>
+      <!-- <ion-buttons slot="end">
+        <ion-button fill="clear" color="danger" (click)="deleteForm(form)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons> -->
+    </ion-item>
   </ion-list>
 </ion-content>
