@@ -4,59 +4,64 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <ion-list lines="none">
-    <ng-container *ngFor="let question of surveyForm.questions">
-      <ion-item>
-        <ion-label>
-          <h2>{{ question.question }}</h2>
-        </ion-label>
-      </ion-item>
-      <!-- Other question content -->
-      <div *ngIf="question.question_type === 'multipleChoice'">
-        <ion-radio-group
-          class="options-group"
-          style="display: flex; flex-direction: column"
-          [(ngModel)]="question.selectedOption"
-        >
-          <ion-radio
-            *ngFor="let option of question.options"
-            [value]="option"
-            class="option"
-            labelPlacement="start"
-            justify-content="start"
-          >
-            {{ option }}
-          </ion-radio>
-        </ion-radio-group>
-      </div>
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <div class="content">
+      <ion-list>
+        <div *ngFor="let question of surveyForm.questions" class="question-box">
+          <ion-item lines="none">
+            <ion-label>
+              <h2>{{ question.question }}</h2>
+            </ion-label>
+          </ion-item>
+          <!-- Other question content -->
+          <div *ngIf="question.question_type === 'multipleChoice'">
+            <ion-radio-group
+              class="options-group"
+              style="display: flex; flex-direction: column"
+              [(ngModel)]="question.selectedOption"
+            >
+              <ion-radio
+                *ngFor="let option of question.options"
+                [value]="option"
+                class="option"
+                labelPlacement="start"
+                justify-content="start"
+              >
+                {{ option }}
+              </ion-radio>
+            </ion-radio-group>
+          </div>
 
-      <div *ngIf="question.question_type === 'shortAnswer'">
-        <ion-input
-          type="text"
-          class="short-answer-input"
-          [(ngModel)]="question.answer"
-        ></ion-input>
-        <!-- Bind answer to question object -->
-      </div>
+          <div *ngIf="question.question_type === 'shortAnswer'">
+            <ion-input
+              type="text"
+              class="short-answer-input"
+              [(ngModel)]="question.answer"
+            ></ion-input>
+            <!-- Bind answer to question object -->
+          </div>
 
-      <div *ngIf="question.question_type === 'paragraph'">
-        <ion-textarea
-          class="paragraph-textarea"
-          [(ngModel)]="question.answer"
-        ></ion-textarea>
-        <!-- Bind answer to question object -->
-      </div>
+          <div *ngIf="question.question_type === 'paragraph'">
+            <ion-textarea
+              class="paragraph-textarea"
+              [(ngModel)]="question.answer"
+            ></ion-textarea>
+            <!-- Bind answer to question object -->
+          </div>
 
-      <div *ngIf="question.question_type === 'number'">
-        <ion-input
-          type="number"
-          class="number-input"
-          [(ngModel)]="question.answer"
-        ></ion-input>
-        <!-- Bind answer to question object -->
-      </div>
-    </ng-container>
-    <ion-button (click)="submitAnswers()" expand="block">Submit</ion-button>
-  </ion-list>
+          <div *ngIf="question.question_type === 'number'">
+            <ion-input
+              type="number"
+              class="number-input"
+              [(ngModel)]="question.answer"
+            ></ion-input>
+            <!-- Bind answer to question object -->
+          </div>
+
+          <!-- ionic divider -->
+        </div>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>
